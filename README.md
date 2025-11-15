@@ -1,59 +1,105 @@
 # Wiki
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.10.
+A beautiful, modern static wiki system built with Angular. All articles are stored as markdown files and can be linked together seamlessly.
 
-## Development server
+## Features
 
-To start a local development server, run:
+- 📝 **Markdown Support**: Write articles in markdown format
+- 🔗 **Internal Linking**: Link to other articles using `[Link Text](article-name)`
+- 🔍 **Search**: Search articles by name or title
+- 🎨 **Modern UI**: Beautiful, responsive design with Inter font
+- 🚀 **Static**: All articles are static markdown files
+- 📱 **Responsive**: Works perfectly on all devices
 
-```bash
-ng serve
-```
+## Development
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+### Prerequisites
 
-## Code scaffolding
+- Node.js 20 or higher
+- npm
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### Setup
 
-```bash
-ng generate component component-name
-```
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+3. Start the development server:
+   ```bash
+   npm start
+   ```
 
-```bash
-ng generate --help
-```
+4. Open your browser and navigate to `http://localhost:4200/`
 
-## Building
+### Building
 
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+To build the project for production:
 
 ```bash
-ng test
+npm run build
 ```
 
-## Running end-to-end tests
+The build artifacts will be stored in the `dist/wiki/browser/` directory.
 
-For end-to-end (e2e) testing, run:
+## Adding Articles
 
-```bash
-ng e2e
+1. Create a new markdown file in `public/wiki/` directory (e.g., `my-article.md`)
+2. Add the article to `public/wiki/articles.json`:
+   ```json
+   {
+     "name": "my-article",
+     "title": "My Article Title",
+     "path": "my-article"
+   }
+   ```
+3. Link to it from other articles using `[Link Text](my-article)`
+
+## Deployment to GitHub Pages
+
+This project is configured to automatically deploy to GitHub Pages using GitHub Actions.
+
+### Setup Instructions
+
+1. **Enable GitHub Pages**:
+   - Go to your repository settings
+   - Navigate to "Pages" section
+   - Under "Source", select "GitHub Actions"
+
+2. **Push to main branch**:
+   - The workflow will automatically trigger on push to `main` or `master` branch
+   - Or manually trigger it from the "Actions" tab
+
+3. **Access your wiki**:
+   - If your repository is `username/username.github.io`, it will be available at `https://username.github.io`
+   - If your repository is `username/wiki`, it will be available at `https://username.github.io/wiki`
+
+### Manual Deployment
+
+You can also manually trigger the deployment workflow:
+- Go to the "Actions" tab in your repository
+- Select "Deploy to GitHub Pages" workflow
+- Click "Run workflow"
+
+## Project Structure
+
+```
+wiki/
+├── public/
+│   └── wiki/              # Markdown articles go here
+│       ├── index.md       # Home page
+│       ├── articles.json  # Article index for search
+│       └── *.md           # Other articles
+├── src/
+│   └── app/
+│       ├── components/    # Angular components
+│       └── services/      # Services (WikiService, SearchService)
+└── .github/
+    └── workflows/
+        └── deploy.yml     # GitHub Actions deployment workflow
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## License
 
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+MIT
