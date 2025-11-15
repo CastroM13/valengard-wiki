@@ -1,0 +1,13 @@
+@if (loading()) {
+  <div class="loading">
+    <h1>Loading</h1>
+  </div>
+} @else if (error()) {
+  <div class="error">
+    <h1>Home Page Not Found</h1>
+    <p>The index.md file is missing. Please create it in the public/wiki/ directory.</p>
+  </div>
+} @else {
+  <div class="wiki-content" [innerHTML]="content()"></div>
+}
+

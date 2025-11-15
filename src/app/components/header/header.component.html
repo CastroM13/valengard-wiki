@@ -1,0 +1,72 @@
+<header class="header">
+  <div class="header-container">
+    <a routerLink="/" class="logo">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>Wiki</span>
+    </a>
+    
+    <div class="search-container">
+      <div class="search-input-wrapper">
+        <svg class="search-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9 17C13.4183 17 17 13.4183 17 9C17 4.58172 13.4183 1 9 1C4.58172 1 1 4.58172 1 9C1 13.4183 4.58172 17 9 17Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M19 19L14.65 14.65" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <input
+          type="text"
+          class="search-input"
+          placeholder="Search articles..."
+          [value]="searchQuery()"
+          (input)="onSearchInput($event)"
+          (focus)="onSearchFocus()"
+        />
+        @if (isSearching()) {
+          <div class="search-spinner"></div>
+        }
+        @if (searchQuery() && !isSearching()) {
+          <button
+            type="button"
+            class="search-clear"
+            (click)="searchQuery.set(''); showResults.set(false);"
+            aria-label="Clear search"
+          >
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 4L4 12M4 4L12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        }
+      </div>
+      
+      @if (showResults()) {
+        <div class="search-results">
+          @if (searchResults().length > 0) {
+            @for (article of searchResults(); track article.name) {
+              <button
+                type="button"
+                class="search-result-item"
+                (click)="selectArticle(article)"
+              >
+                <div class="result-title">{{ article.title }}</div>
+                <div class="result-path">{{ article.path }}</div>
+              </button>
+            }
+          } @else {
+            <div class="search-result-empty">
+              No articles found
+            </div>
+          }
+        </div>
+      }
+    </div>
+    
+    <nav class="nav">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-link">
+        Home
+      </a>
+    </nav>
+  </div>
+</header>
+

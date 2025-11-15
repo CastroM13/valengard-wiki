@@ -1,0 +1,14 @@
+@if (loading()) {
+  <div class="loading">
+    <h1>Loading</h1>
+  </div>
+} @else if (error()) {
+  <div class="error">
+    <h1>Article Not Found</h1>
+    <p>The article you're looking for doesn't exist.</p>
+    <a routerLink="/">Go to Home</a>
+  </div>
+} @else {
+  <div class="wiki-content" [innerHTML]="content()"></div>
+}
+
