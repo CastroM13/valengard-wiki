@@ -1,12 +1,7 @@
 <header class="header">
   <div class="header-container">
     <a routerLink="/" class="logo">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      <span>Wiki</span>
+      <span class="billboard-title" [style.font-family]="randomFont()">Valengard</span>
     </a>
     
     <div class="search-container">
@@ -18,7 +13,7 @@
         <input
           type="text"
           class="search-input"
-          placeholder="Search articles..."
+          placeholder="Pesquisar no wiki..."
           [value]="searchQuery()"
           (input)="onSearchInput($event)"
           (focus)="onSearchFocus()"
@@ -43,14 +38,14 @@
       @if (showResults()) {
         <div class="search-results">
           @if (searchResults().length > 0) {
-            @for (article of searchResults(); track article.name) {
+            @for (article of searchResults(); track article.title) {
               <button
                 type="button"
                 class="search-result-item"
                 (click)="selectArticle(article)"
               >
                 <div class="result-title">{{ article.title }}</div>
-                <div class="result-path">{{ article.path }}</div>
+                <div class="result-path">{{ article.description }}</div>
               </button>
             }
           } @else {
@@ -63,9 +58,38 @@
     </div>
     
     <nav class="nav">
-      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-link">
-        Home
-      </a>
+      <button
+        type="button"
+        class="theme-toggle"
+        (click)="themeService.cycleTheme()"
+        [attr.aria-label]="'Switch to ' + (themeService.currentTheme() === 'diem' ? 'penumbra' : themeService.currentTheme() === 'penumbra' ? 'umbra' : 'diem') + ' theme'"
+        [title]="'Tema atual: ' + themeService.currentTheme() + '. Clique para trocar de tema.'"
+      >
+        @if (themeService.getThemeIcon() === 'sun') {
+          <svg class="theme-icon sun" xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" fill="none">
+            <g clip-path="url(#clip0_1_3)">
+            <circle cx="50" cy="50" r="25" fill="#FFB81F"/>
+            <path d="M50 100L45.165 78.5957C46.7376 78.8596 48.3525 79 50 79C51.6472 79 53.2618 78.8595 54.834 78.5957L50 100ZM26.3604 66.8018C28.2417 69.444 30.5551 71.7572 33.1973 73.6387L14.6445 85.3555L26.3604 66.8018ZM85.3555 85.3555L66.8018 73.6387C69.444 71.7572 71.7572 69.444 73.6387 66.8018L85.3555 85.3555ZM21.4033 45.165C21.1394 46.7375 21 48.3525 21 50C21 51.6471 21.1395 53.2618 21.4033 54.834L0 50L21.4033 45.165ZM100 50L78.5957 54.834C78.8595 53.2618 79 51.6472 79 50C79 48.3525 78.8596 46.7376 78.5957 45.165L100 50ZM33.1973 26.3604C30.5551 28.2417 28.2417 30.5551 26.3604 33.1973L14.6445 14.6445L33.1973 26.3604ZM73.6387 33.1973C71.7572 30.5551 69.444 28.2417 66.8018 26.3604L85.3555 14.6445L73.6387 33.1973ZM54.834 21.4033C53.2618 21.1395 51.6471 21 50 21C48.3525 21 46.7375 21.1394 45.165 21.4033L50 0L54.834 21.4033Z" fill="#D9D9D9"/>
+            <path d="M50 100L45.165 78.5957C46.7376 78.8596 48.3525 79 50 79C51.6472 79 53.2618 78.8595 54.834 78.5957L50 100ZM26.3604 66.8018C28.2417 69.444 30.5551 71.7572 33.1973 73.6387L14.6445 85.3555L26.3604 66.8018ZM85.3555 85.3555L66.8018 73.6387C69.444 71.7572 71.7572 69.444 73.6387 66.8018L85.3555 85.3555ZM21.4033 45.165C21.1394 46.7375 21 48.3525 21 50C21 51.6471 21.1395 53.2618 21.4033 54.834L0 50L21.4033 45.165ZM100 50L78.5957 54.834C78.8595 53.2618 79 51.6472 79 50C79 48.3525 78.8596 46.7376 78.5957 45.165L100 50ZM33.1973 26.3604C30.5551 28.2417 28.2417 30.5551 26.3604 33.1973L14.6445 14.6445L33.1973 26.3604ZM73.6387 33.1973C71.7572 30.5551 69.444 28.2417 66.8018 26.3604L85.3555 14.6445L73.6387 33.1973ZM54.834 21.4033C53.2618 21.1395 51.6471 21 50 21C48.3525 21 46.7375 21.1394 45.165 21.4033L50 0L54.834 21.4033Z" fill="#FFB81F"/>
+            </g>
+            <defs>
+            <clipPath id="clip0_1_3">
+            <rect width="100" height="100" fill="white"/>
+            </clipPath>
+            </defs>
+            </svg>
+        } @else if (themeService.getThemeIcon() === 'moon') {
+          <svg class="theme-icon moon" xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" fill="none">
+            <path d="M43.6357 25.8184C41.9501 29.1831 41 32.9804 41 37C41 50.8071 52.1929 62 66 62C68.1992 62 70.3314 61.7139 72.3633 61.1807C68.259 69.374 59.7877 75 50 75C36.1929 75 25 63.8071 25 50C25 38.3923 32.9112 28.6333 43.6357 25.8184Z" fill="#38366E"/>
+            <path d="M43.6357 25.8184C41.9501 29.1831 41 32.9804 41 37C41 50.8071 52.1929 62 66 62C68.1992 62 70.3314 61.7139 72.3633 61.1807C68.259 69.374 59.7877 75 50 75C36.1929 75 25 63.8071 25 50C25 38.3923 32.9112 28.6333 43.6357 25.8184Z" fill="#38366E"/>
+            </svg>
+        } @else {
+          <svg class="theme-icon eclipse" xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" fill="none">
+            <circle cx="50" cy="50" r="25" fill="white"/>
+            <circle cx="50" cy="50" r="30" stroke="white" stroke-width="2"/>
+            </svg>
+        }
+      </button>
     </nav>
   </div>
 </header>

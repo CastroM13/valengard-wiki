@@ -4,8 +4,8 @@ import { DOCUMENT } from '@angular/common';
 import { Observable, map, catchError, of } from 'rxjs';
 
 export interface Article {
-  name: string;
   title: string;
+  description: string;
   path: string;
 }
 
@@ -60,9 +60,9 @@ export class SearchService {
     return this.getArticles().pipe(
       map((articles) => {
         return articles.filter((article) => {
-          const nameMatch = article.name.toLowerCase().includes(searchTerm);
+          const descriptionMatch = article.description.toLowerCase().includes(searchTerm);
           const titleMatch = article.title.toLowerCase().includes(searchTerm);
-          return nameMatch || titleMatch;
+          return descriptionMatch || titleMatch;
         });
       })
     );

@@ -1,19 +1,34 @@
 {
   "articles": [
     {
-      "name": "index",
-      "title": "Welcome to the Wiki",
+      "title": "Página Inicial",
+      "description": "Boas vindas à Wiki do Mundo de Valengard!",
       "path": "index"
     },
     {
-      "name": "example-article",
-      "title": "Example Article",
-      "path": "example-article"
+      "title": "Figuras Históricas",
+      "description": "As principais figuras históricas do mundo de Valengard.",
+      "path": "Figuras_Históricas"
+    },
+    {	
+      "title": "Geografia",
+      "description": "A geografia do mundo de Valengard.",
+      "path": "Geografia"
     },
     {
-      "name": "getting-started",
-      "title": "Getting Started",
-      "path": "getting-started"
+      "title": "Cosmologia",
+      "description": "A cosmologia do mundo de Valengard.",
+      "path": "Cosmologia"
+    },
+    {
+      "title": "Política",
+      "description": "A política do mundo de Valengard.",
+      "path": "Política"
+    },
+    {
+      "title": "Instituições",
+      "description": "As principais instituições do mundo de Valengard.",
+      "path": "Instituições"
     }
   ]
 }

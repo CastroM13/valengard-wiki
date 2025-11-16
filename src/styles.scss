@@ -3,7 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
-  // Color Palette
+  // Color Palette - Diem (Light) - Default
   --color-primary: #2563eb;
   --color-primary-hover: #1d4ed8;
   --color-primary-light: #dbeafe;
@@ -23,6 +23,58 @@
   --color-error: #ef4444;
   --color-warning: #f59e0b;
   
+  // Transitions
+  --theme-transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+// Penumbra Theme (Slightly Dark)
+[data-theme="penumbra"] {
+  --color-primary: #3b82f6;
+  --color-primary-hover: #2563eb;
+  --color-primary-light: #1e3a8a;
+  
+  --color-text: #e2e8f0;
+  --color-text-secondary: #cbd5e1;
+  --color-text-muted: #94a3b8;
+  
+  --color-bg: #1e293b;
+  --color-bg-secondary: #0f172a;
+  --color-bg-tertiary: #1e293b;
+  
+  --color-border: #334155;
+  --color-border-light: #475569;
+  
+  --color-success: #34d399;
+  --color-error: #f87171;
+  --color-warning: #fbbf24;
+}
+
+// Umbra Theme (Full Dark )
+[data-theme="umbra"] {
+  --color-primary: #60a5fa;
+  --color-primary-hover: #3b82f6;
+  --color-primary-light: #1e3a8a;
+  
+  --color-text: #f8fafc;
+  --color-text-secondary: #e2e8f0;
+  --color-text-muted: #94a3b8;
+  
+  --color-bg: #000000;
+  --color-bg-secondary: #000000;
+  --color-bg-tertiary: #141414;
+  
+  --color-border: #1a1a1a;
+  --color-border-light: #262626;
+  
+  --color-success: #4ade80;
+  --color-error: #f87171;
+  --color-warning: #fbbf24;
+}
+
+:root,
+[data-theme="diem"],
+[data-theme="penumbra"],
+[data-theme="umbra"] {
   // Shadows
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
@@ -77,6 +129,20 @@ body {
   line-height: 1.6;
   color: var(--color-text);
   background-color: var(--color-bg-secondary);
+  transition: var(--theme-transition);
+}
+
+// Apply theme transitions to all elements
+* {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+// Exclude certain elements from transitions for performance
+input,
+textarea,
+button,
+select {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 // Scrollbar styling
@@ -87,11 +153,13 @@ body {
 
 ::-webkit-scrollbar-track {
   background: var(--color-bg-secondary);
+  transition: background-color 0.2s ease;
 }
 
 ::-webkit-scrollbar-thumb {
   background: var(--color-border);
   border-radius: 5px;
+  transition: background-color 0.2s ease;
   
   &:hover {
     background: var(--color-text-muted);

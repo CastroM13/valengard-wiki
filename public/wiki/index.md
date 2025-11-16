@@ -1,28 +1,11 @@
-# Welcome to the Wiki
+# Boas vindas à Wiki do Mundo de Valengard!
 
-This is the home page of your wiki. You can customize this markdown file to create your own index.
+Nesta enciclopédia global você encontra informações sobre o mundo de Valengard e seus habitantes.
 
-## Quick Links
+## Conceitos principais
 
-- [Example Article](example-article)
-- [Getting Started](getting-started)
-
-## About This Wiki
-
-This is a static wiki system built with Angular. All articles are stored as markdown files in the `public/wiki/` directory.
-
-### Features
-
-- **Markdown Support**: Write articles in markdown format
-- **Internal Linking**: Link to other articles using `[Link Text](article-name)`
-- **Clean URLs**: Access articles via `/wiki/article-name`
-- **Customizable Home**: Edit `index.md` to customize the home page
-
-## Getting Started
-
-1. Create a new markdown file in `public/wiki/`
-2. Link to it from other articles using `[Link Text](article-name)`
-3. Access it via `/wiki/article-name`
-
-Happy writing!
-
+- [Geografia](Geografia)
+- [Política](Política)
+- [Instituições](Instituições)
+- [Figuras Históricas](Figuras_Históricas)
+- [Cosmologia](Cosmologia)
